@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: bunny
+  template:
+    metadata:
+      labels:
+        app: bunny
+    spec:
+      containers:
+        - name: cont
+          image: nginx:alpine  # lighter image
+          # Remove the while loop command if not needed
+          volumeMounts:
+            - mountPath: /bunny/
+              name: genie
+          resources:
+            requests:
+              cpu: "100m"    # Reduced from 500m
+              memory: "128Mi" # Reduced from 500Mi
+            limits:
+              cpu: "200m"    # Reduced from 800m
+              memory: "256Mi" # Reduced from 800Mi
+        - name: cont1
+          image: redis:alpine  # lighter image
+          # Remove the while loop command if not needed
+          volumeMounts:
+            - mountPath: /chintu/
+              name: genie
+          resources:
+            requests:
+              cpu: "100m"    # Reduced from 500m
+              memory: "128Mi" # Reduced from 500Mi
+            limits:
+              cpu: "200m"    # Reduced from 800m
+              memory: "256Mi" # Reduced from 800Mi
+      volumes:
+        - name: genie
+          persistentVolumeClaim:
+            claimName: pvc
