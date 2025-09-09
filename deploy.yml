@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: cont
-          image: 	node:alpine # lighter image
+          image: 	httpd:alpine # lighter image
           # Remove the while loop command if not needed
           volumeMounts:
             - mountPath: /bunny/
@@ -27,7 +27,7 @@ spec:
               cpu: "200m"    # Reduced from 800m
               memory: "256Mi" # Reduced from 800Mi
         - name: cont1
-          image: redis:alpine  # lighter image
+          image: nginx:alpine  # lighter image
           # Remove the while loop command if not needed
           volumeMounts:
             - mountPath: /chintu/
