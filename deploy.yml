@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: cont
-          image: nginx:alpine  # lighter image
+          image: caddy:alpine  # lighter image
           # Remove the while loop command if not needed
           volumeMounts:
             - mountPath: /bunny/
